@@ -1,0 +1,60 @@
+/* =============================================================================
+   BASE.CSS — Reset, variabel CSS, dan tipografi dasar
+   ============================================================================= */
+
+/* === VARIABEL & ROOT === */
+:root {
+    /* Palet warna landing page */
+    --hijau-tua:    #1e5b2e;
+    --hijau-muda:   #2d7a3e;
+    --hijau-bg:     #f0f5f1;
+    --abu-gelap:    #1c2834;
+
+    /* Palet warna panel admin */
+    --green-dark:   #1B5E20;
+    --green-medium: #2E7D32;
+    --green-light:  #388E3C;
+    --green-pale:   #E8F5E9;
+    --green-border: #A5D6A7;
+    --green-accent: #69F0AE;
+    --green-text:   #81C784;
+
+    /* Warna halaman & permukaan */
+    --page-bg:       #F4F6F4;
+    --white:         #FFFFFF;
+    --text-base:     #333333;
+    --muted:         #6a9b6a;
+    --surface:       #FFFFFF;
+    --surface-border:#C8D5C8;
+
+    /* Tipografi */
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+}
+
+/* === RESET & BASE === */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--font-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+}
+
+body {
+    background: var(--page-bg);
+    color: var(--text-base);
+}
+
+a            { text-decoration: none; }
+ul, ol       { list-style: none; padding: 0; margin: 0; }
+img          { max-width: 100%; display: block; }
+button       { font-family: inherit; }
+input,
+select,
+textarea     { font-family: inherit; font-size: inherit; }

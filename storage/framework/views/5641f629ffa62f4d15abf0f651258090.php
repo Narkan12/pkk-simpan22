@@ -1,0 +1,1 @@
+<?php /**PATH C:\laragon\www\PKK-Simpan22\resources\views\layouts\layout-auth.blade.php ENDPATH**/ ?>
