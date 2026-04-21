@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pkk-simpan22
+    runtime: php
+    buildCommand: composer install --optimize-autoloader --no-dev && php artisan migrate --force
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
