@@ -6,6 +6,7 @@ use App\Models\Employees;
 use App\Models\Gaji;
 use App\Models\KomponenGaji;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GajiController extends Controller
 {
@@ -29,7 +30,6 @@ class GajiController extends Controller
         $bulanList = range(1, 12);
         $tahunList = range(now()->year - 2, now()->year + 1);
 
-        // Alias agar view tetap kompatibel
         $gaji  = $daftarGaji;
         $bulan = $bulanDipilih;
         $tahun = $tahunDipilih;
@@ -48,56 +48,90 @@ class GajiController extends Controller
             'tahun' => 'required|integer|min:2020',
         ]);
 
-        // Ambil semua pegawai aktif beserta jabatannya
-        $daftarPegawaiAktif = Employees::with('jabatan')
+        $daftarPegawaiAktif = Employees::with(['jabatan'])
             ->whereHas('status', fn($q) => $q->where('nama_status', 'Aktif'))
             ->get();
 
+        if ($daftarPegawaiAktif->isEmpty()) {
+            return back()->with('error', 'Tidak ada pegawai dengan status Aktif.');
+        }
+
         $jumlahDigenerate = 0;
+        $jumlahDilewati   = 0;
+        $jumlahError      = 0;
 
         foreach ($daftarPegawaiAktif as $pegawai) {
-            // Lewati jika gaji bulan ini sudah ada
             $sudahAda = Gaji::where('id_pegawai', $pegawai->id)
                 ->where('bulan', $request->bulan)
                 ->where('tahun', $request->tahun)
                 ->exists();
 
             if ($sudahAda) {
+                $jumlahDilewati++;
                 continue;
             }
 
-            // Hitung tunjangan & potongan dari komponen gaji jabatan
-            $gajiPokokDasar  = $pegawai->jabatan->gaji_pokok ?? 0;
-            $daftarKomponen  = KomponenGaji::where('id_jabatan', $pegawai->id_jabatan)->get();
-            $totalTunjangan  = 0;
-            $totalPotongan   = 0;
+            $jabatan        = $pegawai->jabatan;
+            $gajiPokokDasar = (float) (optional($jabatan)->gaji_pokok ?? 0);
+            $idJabatan      = $pegawai->id_jabatan;
+
+            $daftarKomponen = $idJabatan
+                ? KomponenGaji::where('id_jabatan', $idJabatan)->get()
+                : collect();
+
+            $totalTunjangan = 0.0;
+            $totalPotongan  = 0.0;
 
             foreach ($daftarKomponen as $komponen) {
-                $nominalHasil = strtolower($komponen->tipe_nominal) === 'percent'
-                    ? ($komponen->nominal / 100) * $gajiPokokDasar
-                    : $komponen->nominal;
+                $nominal     = (float) ($komponen->nominal ?? 0);
+                $tipeNominal = strtolower(trim($komponen->tipe_nominal ?? 'fixed'));
 
-                if (strtolower($komponen->jenis) === 'penghasilan') {
+                $jenis = strtolower(trim($komponen->jenis ?? ''));
+
+                $nominalHasil = $tipeNominal === 'percent'
+                    ? ($nominal / 100) * $gajiPokokDasar
+                    : $nominal;
+
+                if (in_array($jenis, ['penghasilan', 'tunjangan', 'income', 'allowance'])) {
                     $totalTunjangan += $nominalHasil;
-                } else {
+                } elseif (in_array($jenis, ['potongan', 'deduction', 'deduksi', 'potong'])) {
                     $totalPotongan += $nominalHasil;
+                } else {
+                    Log::warning("GajiController: Komponen '{$komponen->nama_komponen}' " .
+                        "memiliki jenis tidak dikenal: '{$komponen->jenis}'. Diabaikan.");
                 }
             }
 
-            Gaji::create([
-                'id_pegawai'   => $pegawai->id,
-                'bulan'        => $request->bulan,
-                'tahun'        => $request->tahun,
-                'gaji_pokok'   => $gajiPokokDasar,
-                'tunjangan'    => $totalTunjangan,
-                'potongan'     => $totalPotongan,
-                'status_bayar' => 'Belum Dibayar',
-            ]);
+            try {
+                Gaji::create([
+                    'id_pegawai'   => $pegawai->id,
+                    'bulan'        => (int) $request->bulan,
+                    'tahun'        => (int) $request->tahun,
+                    'gaji_pokok'   => (int) round($gajiPokokDasar),
+                    'tunjangan'    => (int) round($totalTunjangan),
+                    'potongan'     => (int) round($totalPotongan),
+                    'status_bayar' => 'Belum Dibayar',
+                ]);
 
-            $jumlahDigenerate++;
+                $jumlahDigenerate++;
+
+                Log::info("Gaji generated — {$pegawai->nama_lengkap} | " .
+                    "Pokok: " . (int)round($gajiPokokDasar) .
+                    " | Tunjangan: " . (int)round($totalTunjangan) .
+                    " | Potongan: " . (int)round($totalPotongan));
+
+            } catch (\Exception $e) {
+                $jumlahError++;
+                Log::error("GajiController: Gagal simpan gaji pegawai ID {$pegawai->id} " .
+                    "({$pegawai->nama_lengkap}). Error: " . $e->getMessage());
+            }
         }
 
-        return back()->with('success', "Berhasil generate gaji untuk {$jumlahDigenerate} pegawai.");
+        $pesan = "Berhasil generate gaji untuk {$jumlahDigenerate} pegawai.";
+        if ($jumlahDilewati > 0) $pesan .= " {$jumlahDilewati} sudah ada, dilewati.";
+        if ($jumlahError > 0)    $pesan .= " {$jumlahError} gagal (cek log).";
+
+        return back()->with('success', $pesan);
     }
 
     /** Perbarui status pembayaran gaji */
@@ -109,7 +143,6 @@ class GajiController extends Controller
 
         $dataUpdate = ['status_bayar' => $request->status_bayar];
 
-        // Catat tanggal bayar jika status diubah menjadi sudah dibayar
         if ($request->status_bayar === 'Sudah Dibayar') {
             $dataUpdate['tanggal_bayar'] = now()->toDateString();
         }
