@@ -57,7 +57,6 @@
                         <input type="checkbox" name="remember">
                         Ingat saya
                     </label>
-                    <a href="#" class="forgot-link">Lupa Kata Sandi?</a>
                 </div>
 
                 <button type="submit" class="btn-login">MASUK</button>
