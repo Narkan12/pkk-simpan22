@@ -9,7 +9,7 @@
         <h2 style="color:#fff;font-size:1.5rem;font-weight:700;margin:0;">Laporan Data Pegawai</h2>
         <a href="{{ route('laporan.exportPegawai') }}"
            style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border-radius:0.5rem;color:#fff;font-size:0.875rem;font-weight:600;background:#16a34a;text-decoration:none;">
-            <i class="bi bi-download"></i> Ekspor Excel
+            <i class="bi bi-download"></i> Ekspor CSV
         </a>
     </div>
 

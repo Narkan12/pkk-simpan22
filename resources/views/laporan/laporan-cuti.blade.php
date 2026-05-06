@@ -15,7 +15,7 @@
             </select>
             <button onclick="eksporCuti()"
                 style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border-radius:0.5rem;color:#fff;font-size:0.875rem;font-weight:600;border:none;background:#16a34a;cursor:pointer;white-space:nowrap;">
-                <i class="bi bi-download"></i> Ekspor Excel
+                <i class="bi bi-download"></i> Ekspor CSV
             </button>
         </div>
     </div>

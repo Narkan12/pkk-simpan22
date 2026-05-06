@@ -135,14 +135,14 @@
             document.addEventListener("DOMContentLoaded", function() {
                 const ctx = document.getElementById('departemenChart').getContext('2d');
                 const labels = {!! json_encode($departemenStats->pluck('nama_departemen') ?? []) !!};
-                const dataCounts = {!! json_encode($departemenStats->pluck('employees_count') ?? []) !!};
+                const dataCounts = {!! json_encode($departemenStats->pluck('departemens_count') ?? []) !!};
 
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Jumlah Pegawai',
+                            label: 'Jumlah Departemen',
                             data: dataCounts,
                             backgroundColor: 'rgba(33, 136, 255, 0.6)',
                             borderColor: '#2188ff',

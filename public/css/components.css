@@ -1,4 +1,4 @@
-/* === NAVBAR (landing) === */
+/* ===== NAVBAR (landing) ===== */
 .navbar {
     position: sticky;
     top: 0;
@@ -68,7 +68,7 @@
     transform: translateY(-1px);
 }
 
-/* === SIDEBAR (admin) === */
+/* ===== SIDEBAR (admin) ===== */
 .sidebar-logo {
     display: flex;
     align-items: center;
@@ -203,7 +203,7 @@
 .sidebar-text { /* toggled by JS for collapse */ }
 .sidebar.collapsed .sidebar-text { display: none; }
 
-/* === HEADER (admin top bar) === */
+/* ===== HEADER (admin top bar) ===== */
 .header-toggle-btn {
     background: var(--green-dark);
     border: 1px solid #DCE8DC;
@@ -252,7 +252,7 @@
     color: var(--green-medium);
 }
 
-/* === BUTTONS === */
+/* ===== BUTTONS ===== */
 .btn-tambah-data {
     background: var(--green-medium);
     color: var(--white);
@@ -294,6 +294,7 @@
     transition: all 0.2s;
     text-decoration: none;
     display: inline-block;
+    color: white;
 }
 .btn-hero-secondary:hover {
     background: var(--green-pale);
@@ -405,7 +406,7 @@
     color: var(--white);
 }
 
-/* === CARDS === */
+/* ===== CARDS ===== */
 .card-info {
     background: var(--white);
     border: 1px solid var(--surface-border);
@@ -442,7 +443,7 @@
 .stat-value  { font-size: 0.875rem; font-weight: 600; color: var(--green-dark); }
 
 /* Dark cards (admin pages) */
-.custom-card      { background: #ffffff; border: 1px solid #e2ece2; border-radius: 0.5rem; margin-top: 50px !important;  }
+.custom-card      { background: #ffffff; }
 .custom-paragraph { color: #1a2e1a; }
 
 /* Dark summary card (dashboard-pegawai) */
@@ -574,7 +575,7 @@
     padding: 0.75rem;
 }
 
-/* === FORMS === */
+/* ===== FORMS ===== */
 .form-label {
     font-size: 13px;
     font-weight: 600;
@@ -725,7 +726,7 @@
     cursor: pointer;
 }
 
-/* === TABLE === */
+/* ===== TABLE ===== */
 .table-dark-custom {
     background: var(--white);
     border-radius: 10px;
@@ -760,7 +761,7 @@
     background: var(--white);
 }
 
-/* === SEARCH BAR === */
+/* ===== SEARCH BAR ===== */
 .search-wrapper {
     display: flex;
     align-items: center;
@@ -786,15 +787,15 @@
 }
 .search-wrapper input::placeholder { color: var(--green-border); }
 
-/* === STATUS BADGES === */
+/* ===== STATUS BADGES ===== */
 .status-active   { color: #34d399; background: rgba(52,211,153,0.1);  padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(52,211,153,0.2); display: inline-block; }
 .status-cuti     { color: #fbbf24; background: rgba(251,191,36,0.1);  padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(251,191,36,0.2); display: inline-block; }
 .status-nonaktif { color: #f43f5e; background: rgba(244,63,94,0.1);   padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(244,63,94,0.2);  display: inline-block; }
-.status-pensiun  { color: #64748b; background: rgba(148,163,184,0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(148,163,184,0.2);display: inline-block; }
+.status-pensiun  { color: #000000; background: rgba(148,163,184,0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(148,163,184,0.2);display: inline-block; }
 .status-kontrak  { color: #60a5fa; background: rgba(96,165,250,0.1);  padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(96,165,250,0.2); display: inline-block; }
-.status-lainnya  { color: #64748b; background: rgba(192,132,252,0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(192,132,252,0.2);display: inline-block; }
-.status-jabatan  { color: #475569; font-weight: 500; background: rgba(148,163,184,0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(148,163,184,0.2); display: inline-block; letter-spacing: 0.03em; }
-.status-departemen { color: #000000; font-weight: 500; background: rgba(0, 0, 0, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.2); display: inline-block; letter-spacing: 0.03em; }
+.status-lainnya  { color: #000000; background: rgba(192,132,252,0.1); padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(192,132,252,0.2);display: inline-block; }
+.status-jabatan  { color: #000000; font-weight: 500; background: rgba(148,163,184,0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(148,163,184,0.2); display: inline-block; letter-spacing: 0.03em; }
+.status-departemen { color: #000000; font-weight: 500; background: rgba(148,163,184,0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(148,163,184,0.2); display: inline-block; letter-spacing: 0.03em; }
 .status-penghasilan { color: #fcd34d; font-weight: 600; background: rgba(245,158,11,0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; display: inline-block; }
 .status-potongan    { color: #f87171; font-weight: 600; background: rgba(248,113,113,0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; display: inline-block; }
 .status-belum     { color: #8d6500; background: rgba(251,191,36,0.1);  padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: 1px solid rgba(251,191,36,0.2); display: inline-block; }
@@ -806,7 +807,7 @@
 .badge-alpa    { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; background: rgba(248,81,73,0.15);  color: #f85149; display: inline-block; }
 .badge-default { font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; background: rgba(122,154,122,0.15);color: #7a9a7a; display: inline-block; }
 
-/* === MODALS === */
+/* ===== MODALS ===== */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -928,7 +929,7 @@
 .modal-logout-title {
     font-size: 1rem;
     font-weight: 600;
-    color: #1a2e1a;
+    color: #000000;
     margin-bottom: 0.25rem;
 }
 .modal-logout-desc {
@@ -964,7 +965,7 @@
 }
 .btn-logout-cancel:hover { background: #374151; }
 
-/* === ALERTS === */
+/* ===== ALERTS ===== */
 .alert-success {
     margin-bottom: 1rem;
     padding: 0.75rem;
@@ -995,7 +996,7 @@
 .alert-warning i { color: #ca8a04; font-size: 2.5rem; margin-bottom: 1rem; display: block; }
 .alert-warning p { color: #374151; font-size: 1.125rem; }
 
-/* === KONTAK SECTION === */
+/* ===== KONTAK SECTION ===== */
 .kontak-card {
     background: var(--white);
     border: 1px solid var(--surface-border);
@@ -1016,7 +1017,7 @@
 .kontak-title { font-size: 1.125rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.5rem; }
 .kontak-text  { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin: 0; }
 
-/* === FOOTER === */
+/* ===== FOOTER (landing) ===== */
 .landing-footer { background: #1c2834; padding: 3rem 0 2rem; color: #fff; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 4rem; margin-bottom: 2.5rem; }
 .footer-heading { font-size: 1.125rem; font-weight: 700; margin-bottom: 1.25rem; color: #fff; }
@@ -1057,7 +1058,7 @@
 }
 .admin-footer-text { color: #555; font-size: 0.75rem; text-align: center; margin: 0; }
 
-/* === LOGIN PAGE === */
+/* ===== LOGIN PAGE ===== */
 .login-body {
     min-height: 100vh;
     display: flex;
@@ -1116,7 +1117,7 @@
 }
 .zoom-in { animation: ZoomIn 0.6s ease-out forwards; }
 
-/* === FILTER WRAPPER === */
+/* ===== FILTER WRAPPER ===== */
 .filter-wrapper {
     display: flex;
     align-items: center;

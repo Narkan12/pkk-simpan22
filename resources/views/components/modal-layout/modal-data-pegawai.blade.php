@@ -196,34 +196,6 @@
                         @endforeach
                     </select>
                 </div>
-
-                {{-- ── Akun Login ── --}}
-                <div style="grid-column:span 2;border-top:1px solid #2a2a2a;padding-top:0.75rem;margin-top:0.25rem;">
-                    <p class="custom-paragraph" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem;">
-                        <i class="bi bi-key me-1"></i> Akun Login Pegawai
-                    </p>
-                </div>
-                <div style="grid-column:span 2;">
-                    <label class="custom-paragraph" style="font-size:0.75rem;margin-bottom:0.25rem;display:block;">
-                        Email <span style="color:#e05c5c;">*</span>
-                    </label>
-                    <input type="email" name="email" placeholder="contoh@email.com" class="modal-input"
-                        style="width:100%;font-size:0.875rem;color:#c9d1d9;" required>
-                    @error('email')
-                        <p style="color:#e05c5c;font-size:0.7rem;margin-top:3px;">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div style="grid-column:span 2;">
-                    <label class="custom-paragraph" style="font-size:0.75rem;margin-bottom:0.25rem;display:block;">
-                        Password <span style="color:#e05c5c;">*</span>
-                    </label>
-                    <input type="password" name="password" placeholder="Minimal 6 karakter" class="modal-input"
-                        style="width:100%;font-size:0.875rem;color:#c9d1d9;" required>
-                    @error('password')
-                        <p style="color:#e05c5c;font-size:0.7rem;margin-top:3px;">{{ $message }}</p>
-                    @enderror
-                    <p style="font-size:0.7rem;color:#8b949e;margin-top:3px;">Username login = Nama Lengkap pegawai</p>
-                </div>
             </div>
 
             {{-- Footer --}}

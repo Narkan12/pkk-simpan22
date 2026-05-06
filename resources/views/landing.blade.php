@@ -62,7 +62,7 @@
                     </p>
                     <div class="d-flex" style="gap:1.25rem;">
                         <a href="#search" class="btn-hero-primary">CARI DATA ANDA</a>
-                        <a href="#tentang" class="btn-hero-primary text-white">INFO SELENGKAPNYA >></a>
+                        <a href="#tentang" class="btn-hero-secondary">INFO SELENGKAPNYA >></a>
                     </div>
                 </div>
             </div>
@@ -444,9 +444,6 @@
             easing: 'ease-out-quad'
         });
     </script>
-
-    {{-- Notifikasi toast — landing page standalone --}}
-    @include('components.notifikasi-toast')
 
 </html>
 

@@ -45,8 +45,5 @@
 
     @yield('modal')
 
-    {{-- Notifikasi toast global --}}
-    @include('components.notifikasi-toast')
-
 </body>
 </html>
