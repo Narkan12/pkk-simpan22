@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Employees extends Model
 {
@@ -30,6 +31,18 @@ class Employees extends Model
         'id_pendidikan',
         'tanggal_masuk',
     ];
+
+   
+    public function getFotoUrlAttribute(): string
+    {
+        if (!$this->foto) {
+            return '';
+        }
+
+        $disk = config('filesystems.default', 'public');
+
+        return Storage::disk($disk)->url($this->foto);
+    }
 
     public function jabatan()
     {
