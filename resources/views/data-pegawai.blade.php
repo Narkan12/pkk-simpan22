@@ -81,9 +81,15 @@
                     @endphp
                     <tr>
                         <td style="text-align:center; padding:0.75rem 1.25rem;">
+                           
                             @if($pegawai->foto)
-                                <img src="{{ asset('storage/' . $pegawai->foto) }}"
-                                    style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #16a34a;">
+                                <img src="{{ $pegawai->foto_url }}"
+                                    style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid #16a34a;"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+                                {{-- Fallback inisial jika URL foto gagal dimuat --}}
+                                <div style="display:none; width:36px; height:36px; border-radius:50%; background:#16a34a; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:0.75rem;">
+                                    {{ strtoupper(substr($pegawai->nama_lengkap, 0, 2)) }}
+                                </div>
                             @else
                                 <div style="width:36px; height:36px; border-radius:50%; background:#16a34a; display:inline-flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:0.75rem;">
                                     {{ strtoupper(substr($pegawai->nama_lengkap, 0, 2)) }}
@@ -120,8 +126,12 @@
                                         viewJenisPegawai:     '{{ $pegawai->jenis_pegawai ?? '-' }}',
                                         viewStatus:           '{{ ucfirst($statusName) }}',
                                         viewStatusClass:      '{{ $warnaStatus }}',
-                                        viewFoto:             '{{ $pegawai->foto ?? '' }}',
-
+                                        {{--
+                                            FIX viewFoto: Ganti $pegawai->foto (path mentah)
+                                            dengan $pegawai->foto_url (URL siap pakai).
+                                            JS di modal cukup set img.src = viewFoto langsung.
+                                        --}}
+                                        viewFoto:             '{{ $pegawai->foto_url }}',
                                     })">
                                     <i class="bi bi-eye-fill"></i>
                                 </button>
