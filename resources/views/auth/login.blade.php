@@ -28,13 +28,13 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                {{-- NIP --}}
+                {{-- Email --}}
                 <div class="mb-4">
-                    <label for="nip" class="field-label">Username</label>
+                    <label for="email" class="field-label">Email</label>
                     <div class="input-wrapper">
                         <span class="input-icon"><i class="bi bi-person-fill"></i></span>
-                        <input type="text" id="nip" name="username" placeholder="Masukan Username Anda"
-                            class="input-field" value="{{ request('username') }}" required>
+                        <input type="email" id="email" name="email" placeholder="Masukan Email Anda"
+                            class="input-field" value="{{ old('email') }}" required>
                     </div>
                 </div>
 
