@@ -196,6 +196,21 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div>
+                    <label class="custom-paragraph"
+                        style="font-size:0.75rem;margin-bottom:0.25rem;display:block;">Email <span
+                            style="color:#e05c5c;">*</span></label>
+                    <input type="email" name="email" placeholder="email@contoh.com" class="modal-input"
+                        style="width:100%;font-size:0.875rem;color:#c9d1d9;">
+                </div>
+                <div>
+                    <label class="custom-paragraph"
+                        style="font-size:0.75rem;margin-bottom:0.25rem;display:block;">Password <span
+                            style="color:#e05c5c;">*</span></label>
+                    <input type="password" name="password" placeholder="Min. 6 karakter" class="modal-input"
+                        style="width:100%;font-size:0.875rem;color:#c9d1d9;">
+                </div>
             </div>
 
             {{-- Footer --}}
