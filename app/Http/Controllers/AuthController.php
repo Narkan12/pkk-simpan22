@@ -25,12 +25,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
         $credentials = [
-            'email' => $request->email,
+            'username' => $request->username,
             'password' => $request->password,
         ];
 
@@ -44,7 +44,7 @@ class AuthController extends Controller
             return redirect()->route('login')->with('success', $redirectUrl);
         }
 
-        return back()->with('error', 'Email atau password salah.')->withInput($request->only('email'));
+        return back()->with('error', 'Email atau password salah.')->withInput($request->only('username'));
     }
 
     public function logout(Request $request)
