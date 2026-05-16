@@ -10,31 +10,30 @@
 
         body {
             font-family: 'Times New Roman', Times, Georgia, serif;
-            font-size: 12pt;
+            font-size: 11pt;
             color: #111;
             background: #f0f0f0;
         }
 
-        /* ── Wrapper halaman A4 ── */
         .halaman {
             width: 210mm;
-            min-height: 297mm;
+            height: 297mm;
             margin: 20px auto;
-            padding: 2.5cm;
+            padding: 1.8cm 2.2cm;
             background: #fff;
             box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
 
-        /* ── Kop surat ── */
         .kop {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 8px;
+            gap: 14px;
+            margin-bottom: 6px;
         }
         .kop-logo {
-            width: 70px;
-            height: 70px;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             border: 3px solid #1a5c2e;
             display: flex;
@@ -44,49 +43,48 @@
             background: #e8f5e9;
         }
         .kop-logo span {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 900;
             color: #1a5c2e;
             letter-spacing: -1px;
         }
         .kop-teks { flex: 1; }
         .kop-instansi {
-            font-size: 9pt;
+            font-size: 8pt;
             font-weight: 600;
             color: #555;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
         .kop-nama {
-            font-size: 16pt;
+            font-size: 15pt;
             font-weight: 900;
             color: #1a5c2e;
             line-height: 1.1;
             letter-spacing: 1px;
         }
         .kop-alamat {
-            font-size: 8.5pt;
+            font-size: 8pt;
             color: #777;
             margin-top: 2px;
         }
         .kop-divider {
             border: none;
             border-top: 3px solid #1a5c2e;
-            margin: 8px 0 4px;
+            margin: 6px 0 3px;
         }
         .kop-divider-tipis {
             border: none;
             border-top: 1px solid #1a5c2e;
-            margin: 0 0 20px;
+            margin: 0 0 14px;
         }
 
-        /* ── Judul surat ── */
         .judul-surat {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
         .judul-surat h2 {
-            font-size: 13pt;
+            font-size: 12pt;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -94,23 +92,22 @@
             color: #111;
         }
         .judul-surat .nomor {
-            font-size: 10pt;
+            font-size: 9.5pt;
             color: #444;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
-        /* ── Badge status — elemen paling mencolok di halaman ── */
         .badge-status {
             text-align: center;
-            margin: 24px 0;
+            margin: 14px 0;
         }
         .badge-status .badge-inner {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 36px;
-            border-radius: 8px;
-            font-size: 18pt;
+            gap: 8px;
+            padding: 10px 28px;
+            border-radius: 6px;
+            font-size: 15pt;
             font-weight: 900;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -125,25 +122,23 @@
             border: 3px solid #c62828;
             color: #c62828;
         }
-        .badge-status .badge-icon { font-size: 22pt; }
+        .badge-status .badge-icon { font-size: 18pt; }
 
-        /* ── Kalimat pembuka ── */
         .pembuka {
-            font-size: 11pt;
-            line-height: 1.8;
-            margin-bottom: 16px;
+            font-size: 10.5pt;
+            line-height: 1.7;
+            margin-bottom: 12px;
             text-align: justify;
         }
 
-        /* ── Tabel data cuti ── */
         .tabel-data {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 16px;
-            font-size: 11pt;
+            margin-bottom: 12px;
+            font-size: 10.5pt;
         }
         .tabel-data td {
-            padding: 5px 8px;
+            padding: 3px 6px;
             vertical-align: top;
         }
         .tabel-data td:first-child {
@@ -161,53 +156,49 @@
             font-weight: 700;
         }
 
-        /* ── Kalimat penutup ── */
         .penutup {
-            font-size: 11pt;
-            line-height: 1.8;
-            margin-top: 16px;
-            margin-bottom: 24px;
+            font-size: 10.5pt;
+            line-height: 1.7;
+            margin-top: 12px;
+            margin-bottom: 14px;
             text-align: justify;
         }
 
-        /* ── Tanggal cetak ── */
         .tanggal-cetak {
-            font-size: 10pt;
+            font-size: 9.5pt;
             color: #555;
-            margin-bottom: 32px;
+            margin-bottom: 16px;
             text-align: right;
         }
 
-        /* ── Blok tanda tangan ── */
         .ttd-wrapper {
             display: flex;
             justify-content: flex-end;
         }
         .ttd-blok {
             text-align: center;
-            width: 220px;
+            width: 200px;
         }
         .ttd-blok .ttd-kota-tgl {
-            font-size: 10.5pt;
-            margin-bottom: 4px;
+            font-size: 10pt;
+            margin-bottom: 3px;
         }
         .ttd-blok .ttd-jabatan {
-            font-size: 10.5pt;
+            font-size: 10pt;
             font-weight: 700;
-            margin-bottom: 60px; /* ruang tanda tangan */
+            margin-bottom: 48px;
         }
         .ttd-blok .ttd-nama {
-            font-size: 11pt;
+            font-size: 10.5pt;
             font-weight: 900;
             border-top: 1px solid #111;
             padding-top: 4px;
         }
         .ttd-blok .ttd-nip {
-            font-size: 9.5pt;
+            font-size: 9pt;
             color: #555;
         }
 
-        /* ── Bar aksi (tidak dicetak) ── */
         .bar-aksi {
             position: fixed;
             top: 0;
@@ -255,15 +246,22 @@
         }
         .btn-tutup:hover { background: #334155; }
 
-        /* ── Offset konten agar tidak tertutup bar aksi ── */
         body { padding-top: 52px; }
 
-        /* ── Print: sembunyikan bar aksi, hilangkan shadow & background ── */
         @media print {
-            @page { size: A4; margin: 2.5cm; }
+            @page { size: A4; margin: 1.8cm 2.2cm; }
             body { background: #fff; padding-top: 0; }
             .bar-aksi { display: none !important; }
-            .halaman { margin: 0; padding: 0; box-shadow: none; width: 100%; }
+            .halaman {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                width: 100%;
+                height: auto;
+                overflow: visible;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
@@ -423,7 +421,7 @@
         {{-- Blok tanda tangan — nama pimpinan dari data keputusan jika ada --}}
         <div class="ttd-wrapper">
             <div class="ttd-blok">
-                <div class="ttd-kota-tgl">Jakarta, {{ $tglCetak }}</div>
+                <div class="ttd-kota-tgl">Cimahi, {{ $tglCetak }}</div>
                 <div class="ttd-jabatan">Mengetahui / Pimpinan</div>
                 <div class="ttd-nama">
                     ( {{ $cuti->diputuskan_oleh ?? '________________________' }} )

@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- Header --}}
-    <div style="margin-top:1rem;margin-bottom:1rem;">
+    <div style="margin-top:2rem;margin-bottom:1rem;">
         <h4 style="color:#fff;font-weight:700;font-size:1.5rem;margin-bottom:0.25rem;">Manajemen Cuti</h4>
         <p class="custom-paragraph" style="font-size:0.875rem;margin:0;">Kelola dan approve pengajuan cuti pegawai</p>
     </div>
