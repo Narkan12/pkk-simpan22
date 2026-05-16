@@ -25,15 +25,17 @@
         <x-sidebar-active href="{{ route('dashboard') }}" icon="bi-house" route="dashboard"
             onclick="closeMobileSidebarOnNav()">Beranda</x-sidebar-active>
 
-        {{-- Data Pegawai: semua role --}}
-        <x-sidebar-active href="{{ route('data-pegawai') }}" icon="bi-people" route="data-pegawai"
-            onclick="closeMobileSidebarOnNav()">Data Pegawai</x-sidebar-active>
-
             {{-- Manajemen HRD: admin dan owner saja --}}
         @if(in_array(auth()->user()->role ?? '', ['admin', 'owner']))
             <x-sidebar-active href="{{ route('manajemen-hrd') }}" icon="bi-person-badge" route="manajemen-hrd"
                 onclick="closeMobileSidebarOnNav()">Data HRD</x-sidebar-active>
         @endif
+
+        {{-- Data Pegawai: semua role --}}
+        <x-sidebar-active href="{{ route('data-pegawai') }}" icon="bi-people" route="data-pegawai"
+            onclick="closeMobileSidebarOnNav()">Data Pegawai</x-sidebar-active>
+
+            
 
         {{-- Data Master: owner dan admin saja, HRD tidak bisa lihat --}}
         @if(in_array(auth()->user()->role ?? '', ['admin', 'owner']))
