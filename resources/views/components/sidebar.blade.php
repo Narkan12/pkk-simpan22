@@ -32,7 +32,7 @@
             {{-- Manajemen HRD: admin dan owner saja --}}
         @if(in_array(auth()->user()->role ?? '', ['admin', 'owner']))
             <x-sidebar-active href="{{ route('manajemen-hrd') }}" icon="bi-person-badge" route="manajemen-hrd"
-                onclick="closeMobileSidebarOnNav()">Manajemen HRD</x-sidebar-active>
+                onclick="closeMobileSidebarOnNav()">Data HRD</x-sidebar-active>
         @endif
 
         {{-- Data Master: owner dan admin saja, HRD tidak bisa lihat --}}
