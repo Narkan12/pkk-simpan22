@@ -811,7 +811,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 50;
+    z-index: 200;
     align-items: center;
     justify-content: center;
     background: rgba(20,83,45,0.35);

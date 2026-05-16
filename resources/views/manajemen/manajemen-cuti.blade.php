@@ -147,7 +147,7 @@
 
     {{-- Modal Detail --}}
     {{-- wrapper modal: posisi fixed, tengah layar, bisa scroll jika layar kecil --}}
-    <div id="modalViewCuti" class="hidden" style="position:fixed;inset:0;z-index:50;align-items:center;justify-content:center;padding:1rem;background:rgba(20,83,45,0.35);overflow-y:auto;">
+    <div id="modalViewCuti" class="hidden" style="position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;padding:1rem;background:rgba(20,83,45,0.35);overflow-y:auto;">
         <div class="modal-dark" style="max-width:520px;width:100%;">
             <div class="modal-header">
                 <p class="modal-title">Detail Pengajuan Cuti</p>
@@ -219,7 +219,7 @@
     </div>
 
     {{-- Modal Konfirmasi Setujui/Tolak — dengan textarea alasan keputusan --}}
-    <div id="modalKonfirmasi" class="hidden" style="position:fixed;inset:0;z-index:50;align-items:center;justify-content:center;padding:0 1rem;background:rgba(20,83,45,0.35);">
+    <div id="modalKonfirmasi" class="hidden" style="position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;padding:0 1rem;background:rgba(20,83,45,0.35);">
         <div class="modal-dark" style="max-width:400px;">
             <div class="modal-header">
                 <p class="modal-title" id="k-title">Konfirmasi</p>
