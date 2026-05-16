@@ -1,0 +1,607 @@
+
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+    min-width: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.cards-grid-4,
+.cards-grid-3,
+.cards-grid-2 {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    width: 100%; 
+}
+
+@media (min-width: 480px) {
+    .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+    .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .cards-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Summary / action grids (dashboard pegawai) */
+.summary-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; width: 100%; }
+.action-grid  { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); width: 100%; }
+
+@media (min-width: 640px) {
+    .summary-grid { grid-template-columns: repeat(3, 1fr); }
+    .action-grid  { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Filter / search grids */
+.search-form-grid   { display: grid; gap: 1rem; grid-template-columns: 1fr; width: 100%; }
+.filter-grid        { display: grid; gap: 1rem; grid-template-columns: 1fr; width: 100%; }
+.filter-grid-2      { display: grid; gap: 1rem; grid-template-columns: 1fr; width: 100%; }
+.export-grid        { display: grid; gap: 1rem; grid-template-columns: 1fr; width: 100%; }
+.export-format-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); width: 100%; }
+
+@media (min-width: 640px) {
+    .search-form-grid   { grid-template-columns: repeat(2, 1fr); }
+    .filter-grid        { grid-template-columns: repeat(3, 1fr); }
+    .filter-grid-2      { grid-template-columns: repeat(2, 1fr); }
+    .export-grid        { grid-template-columns: repeat(2, 1fr); }
+    .export-format-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .export-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Laporan header buttons */
+.laporan-header-btns { display: flex; flex-direction: column; gap: 0.5rem; }
+@media (min-width: 1024px) {
+    .laporan-header-btns { flex-direction: row; }
+}
+
+/* Landing grids */
+.grid-tentang { display: grid; gap: 1.5rem; grid-template-columns: 1fr; width: 100%; }
+.grid-kontak  { display: grid; gap: 1.5rem; grid-template-columns: 1fr; width: 100%; }
+.footer-grid  { display: grid; gap: 2rem;   grid-template-columns: 1fr; width: 100%; }
+
+@media (min-width: 768px) {
+    .grid-tentang { grid-template-columns: repeat(3, 1fr); }
+    .grid-kontak  { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid  { grid-template-columns: 1fr 1fr 2fr; gap: 4rem; }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE  (< 768px)
+───────────────────────────────────────── */
+@media (max-width: 767px) {
+
+    /* ══════════════════════════════════════
+       CORE LAYOUT — Cegah overflow
+    ══════════════════════════════════════ */
+    .main-content,
+    .top-header,
+    .main-footer,
+    section,
+    .container,
+    [class*="container"] {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Semua flex container di mobile tidak boleh meluber */
+    .d-flex {
+        flex-wrap: wrap;
+        min-width: 0;
+    }
+
+    /* ── Sidebar: offcanvas style ── */
+    .sidebar {
+        position: fixed !important;
+        left: -220px !important;
+        top: 0 !important;
+        height: 100vh !important;
+        width: 210px !important;
+        z-index: 150 !important;
+        transition: left 0.3s ease !important;
+        overflow-y: auto;   /* FIX: sidebar panjang bisa di-scroll */
+        overflow-x: hidden;
+    }
+    .sidebar.mobile-open {
+        left: 0 !important;
+    }
+    .sidebar-text,
+    .sidebar-logo-text,
+    .sidebar-user-info {
+        display: block !important;
+    }
+
+    /* ── Overlay saat sidebar terbuka ── */
+    /* FIX: tambahkan overlay agar klik di luar menutup sidebar */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 140;
+    }
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    /* ── Hamburger button ── */
+    #sidebarToggleBtn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: fixed !important;
+        top: 10px !important;
+        left: 10px !important;
+        z-index: 200 !important;
+        width: 36px;
+        height: 36px;
+        background: var(--green-dark, #1B5E20) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        color: #fff !important;
+        font-size: 1.1rem !important;
+        line-height: 1 !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+        /* FIX: pastikan tombol tidak geser layout */
+        flex-shrink: 0;
+    }
+
+    /* ── Header ── */
+    .top-header {
+        left: 0 !important;
+        right: 0 !important; /* FIX: kunci kanan agar tidak overflow */
+        width: 100% !important; /* FIX: jangan biarkan header lebih lebar dari viewport */
+        padding: 0 0.75rem 0 54px !important;
+        height: 52px;
+        overflow: hidden; /* FIX */
+    }
+    .header-breadcrumb-title {
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+    }
+    .header-breadcrumb-sub { display: none; }
+    .header-clock          { font-size: 11px; padding: 0.2rem 0.5rem; }
+
+    /* ── Main content ── */
+    .main-content {
+        margin-left: 0 !important;
+        margin-top: 52px;
+        padding: 1rem 0.75rem;
+        width: 100% !important; /* FIX */
+        max-width: 100vw !important; /* FIX: tidak melebihi lebar layar */
+    }
+    .main-footer {
+        margin-left: 0 !important;
+        width: 100% !important; /* FIX */
+    }
+
+    /* ── Dashboard grids ── */
+    .dashboard-grid-2 {
+        grid-template-columns: 1fr !important;
+        width: 100%; /* FIX */
+    }
+
+    /* ── Tables ── */
+    /* FIX: table scroll terbatas di dalam wrapper-nya saja, bukan seluruh halaman */
+    .table-dark-custom {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        max-width: 100%;
+    }
+    .table-dark-custom table {
+        min-width: 600px;
+    }
+    .table-dark-custom thead th,
+    .table-dark-custom tbody td {
+        padding: 0.625rem 0.75rem;
+        font-size: 12px;
+        white-space: nowrap; /* FIX: konten tabel tidak wrap, cukup scroll horizontal lokal */
+    }
+
+    /* ── Tombol tambah ── */
+    .btn-tambah-data {
+        font-size: 12px;
+        padding: 0.4rem 0.75rem;
+    }
+
+    /* ── Search bar ── */
+    .search-wrapper {
+        padding: 0.5rem 0.75rem;
+        width: 100%; /* FIX */
+    }
+
+    /* ── Cards grid ── */
+    .cards-grid-3[style] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Header row (judul + tombol tambah) ── */
+    .page-header-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem;
+        width: 100%; /* FIX */
+    }
+    .page-header-row .btn-tambah-data {
+        width: 100%;
+    }
+
+    /* ── Manajemen gaji filter row ── */
+    .gaji-filter-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100%; /* FIX */
+    }
+    .gaji-filter-row > div {
+        min-width: unset !important;
+        width: 100%; /* FIX */
+    }
+
+    /* ── Modal ── */
+    .modal-dark,
+    .modal-logout-box {
+        margin: 0.75rem;
+        width: calc(100% - 1.5rem) !important;
+        max-width: 100% !important;
+        /* FIX: modal konten bisa scroll secara vertikal */
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+    }
+
+    /* ══════════════════════════════════════
+       LANDING PAGE - MOBILE
+    ══════════════════════════════════════ */
+
+    /* ── Navbar ── */
+    /* FIX: navbar tidak boleh scroll horizontal */
+    .navbar-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem !important;
+        width: 100%;
+        overflow: hidden; /* FIX */
+    }
+    .navbar-center {
+        position: static !important;
+        transform: none !important;
+        order: -1;
+        width: 100%;
+        justify-content: center;
+        overflow: hidden; /* FIX */
+    }
+    .navbar-left,
+    .navbar-right {
+        gap: 0.75rem; /* FIX: kurangi gap agar tidak meluber */
+        flex-wrap: wrap;
+        justify-content: center;
+        min-width: 0; /* FIX */
+    }
+    .nav-brand { font-size: 1.5rem; }
+
+    /* ── Hero section ── */
+    .landing-hero-img {
+        display: none !important;
+    }
+    /* FIX: hero wrapper tidak boleh lebih lebar dari viewport */
+    .landing-hero,
+    [class*="hero"] {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .landing-hero-text {
+        padding: 2rem 1.25rem 2.5rem !important;
+        text-align: center;
+        width: 100% !important; /* FIX */
+        max-width: 100% !important; /* FIX */
+    }
+    .landing-hero-text h1 {
+        font-size: 2rem !important;
+        margin-bottom: 1rem !important;
+        word-break: break-word; /* FIX: judul panjang tidak overflow */
+    }
+    .landing-hero-text p {
+        font-size: 0.95rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    .landing-hero-text .d-flex {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+        width: 100%; /* FIX */
+    }
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem !important;
+        box-sizing: border-box; /* FIX */
+    }
+
+    /* ── Tentang Kami ── */
+    .grid-tentang {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Alur Kerja ── */
+    .alur-wrapper {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem;
+        width: 100%; /* FIX */
+        overflow: hidden; /* FIX */
+    }
+    .alur-wrapper > div[style*="max-width:220px"] {
+        max-width: 100% !important;
+        width: 100%;
+    }
+    .alur-arrow {
+        transform: rotate(90deg);
+        font-size: 2rem !important;
+        padding: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* ── Search section ── */
+    .search-form-grid {
+        grid-template-columns: 1fr !important;
+        width: 100%; /* FIX */
+    }
+    /* FIX: container pencarian tidak overflow */
+    .container-search {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .container-search .d-flex[style*="gap:0.875rem"] {
+        flex-direction: column !important;
+        width: 100%; /* FIX */
+    }
+    .btn-cari {
+        width: 100%;
+    }
+    .btn-reset {
+        width: 100%;
+        text-align: center;
+        padding: 0.875rem 1rem;
+    }
+
+    /* ── Hasil pencarian cards ── */
+    /* FIX: tangkap semua inline style repeat(3,1fr) dan repeat(2,1fr) */
+    [style*="grid-template-columns:repeat(3,1fr)"],
+    [style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+    }
+    [style*="grid-template-columns:repeat(2,1fr)"],
+    [style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Kontak section ── */
+    .grid-kontak {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        text-align: center;
+        width: 100%; /* FIX */
+    }
+    .footer-list { align-items: center; }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        width: 100%; /* FIX */
+    }
+
+    /* ── Login page ── */
+    .login-body {
+        padding: 0;
+        align-items: stretch;
+        overflow-x: hidden; /* FIX */
+    }
+    .login-card {
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%; /* FIX */
+        border-radius: 0;
+        min-height: 100vh;
+        box-shadow: none;
+    }
+    .login-right {
+        width: 100%;
+        min-height: auto;
+        padding: 1.25rem 1.5rem;
+        order: -1;
+        flex-shrink: 0;
+    }
+    .brand-content {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-align: left;
+        min-width: 0; /* FIX */
+    }
+    .brand-logo {
+        max-width: 52px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        animation: none;
+    }
+    .brand-circle  { display: none; }
+    .brand-info    { flex: 1; min-width: 0; } /* FIX: min-width:0 agar flex item tidak overflow */
+    .brand-title   { font-size: 28px; letter-spacing: 3px; margin-bottom: 0.1rem; }
+    .brand-subtitle { font-size: 10px; letter-spacing: 1px; margin-bottom: 0; opacity: 0.85; }
+    .brand-tagline { display: none; }
+    .login-left {
+        width: 100%;
+        padding: 1.5rem 1.25rem;
+        flex: 1;
+        justify-content: flex-start;
+        min-width: 0; /* FIX */
+    }
+    .login-title    { font-size: 20px; margin-bottom: 0.25rem; }
+    .login-subtitle { font-size: 13px; margin-bottom: 1.25rem; }
+
+    /* ── Landing footer bottom ── */
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+/* ─────────────────────────────────────────
+   TABLET  (768px – 1023px)
+───────────────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    /* ── Sidebar ── */
+    .sidebar {
+        width: 60px;
+        overflow: hidden; /* FIX: sidebar icon-only tidak meluber */
+    }
+    .sidebar-text,
+    .sidebar-logo-text,
+    .sidebar-user-info {
+        display: none;
+    }
+    .top-header   { left: 60px; }
+    .main-content { margin-left: 60px; }
+    .main-footer  { margin-left: 60px; }
+
+    .header-breadcrumb-title { font-size: 14px; }
+
+    /* ── Landing: Hero ── */
+    .landing-hero-img {
+        width: 28% !important;
+        flex-shrink: 0; /* FIX: gambar tidak mengecil paksa */
+    }
+    .landing-hero-text {
+        padding: 2rem 2rem 2rem 1.5rem !important;
+        min-width: 0; /* FIX */
+    }
+    .landing-hero-text h1 {
+        font-size: 2.25rem !important;
+    }
+
+    /* ── Landing: Tentang ── */
+    .grid-tentang {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* ── Landing: Alur Kerja ── */
+    .alur-wrapper {
+        flex-wrap: wrap !important;
+        gap: 1rem !important;
+    }
+    .alur-arrow {
+        display: none !important;
+    }
+    .alur-wrapper > div[style*="max-width:220px"] {
+        max-width: 45% !important;
+        flex: 0 0 45% !important;
+    }
+
+    /* ── Landing: Search ── */
+    .search-form-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* ── Landing: Hasil pencarian ── */
+    [style*="grid-template-columns:repeat(3,1fr)"],
+    [style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* ── Landing: Kontak ── */
+    .grid-kontak {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ── Landing: Footer ── */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+    }
+    .footer-brand {
+        grid-column: span 2;
+    }
+}
+
+/* ─────────────────────────────────────────
+   DESKTOP  (≥ 1024px)
+───────────────────────────────────────── */
+@media (min-width: 1024px) {
+    .sidebar {
+        width: 210px;
+        left: 0;
+    }
+    .sidebar-text,
+    .sidebar-logo-text,
+    .sidebar-user-info {
+        display: block;
+    }
+    .top-header   { left: 210px; }
+    .main-content { margin-left: 210px; }
+    .main-footer  { margin-left: 210px; }
+
+    /* Search grid desktop */
+    .search-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* FIX: pastikan #sidebarToggleBtn disembunyikan di desktop */
+    #sidebarToggleBtn {
+        display: none !important;
+    }
+    .sidebar-overlay {
+        display: none !important;
+    }
+}
+
+/* ─────────────────────────────────────────
+   ANIMASI
+───────────────────────────────────────── */
+@keyframes ZoomIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
