@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\LogActivities;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class HrdController extends Controller
 {
+    private function catatLog(string $deskripsi): void
+    {
+        $user = Auth::user();
+        LogActivities::create([
+            'nama_lengkap' => $user->nama_lengkap ?? $user->username ?? 'System',
+            'role'         => $user->role ?? '-',
+            'deskripsi'    => $deskripsi,
+        ]);
+    }
     public function index()
     {
         Gate::authorize('access-manajemen-hrd');
@@ -18,7 +29,6 @@ class HrdController extends Controller
         return view('manajemen.manajemen-hrd', compact('hrdList'));
     }
 
-    // tambah akun HRD baru
     public function store(Request $request)
     {
         Gate::authorize('create-hrd');
@@ -46,10 +56,11 @@ class HrdController extends Controller
             'role'     => 'hrd',
         ]);
 
+        $this->catatLog("Menambahkan akun HRD: {$request->name}");
+
         return back()->with('success', "Akun HRD {$request->name} berhasil ditambahkan.");
     }
 
-    // edit akun HRD
     public function update(Request $request, User $user)
     {
         Gate::authorize('edit-hrd');
@@ -73,6 +84,8 @@ class HrdController extends Controller
 
         $user->update($data);
 
+        $this->catatLog("Memperbarui akun HRD: {$user->name}");
+
         return back()->with('success', "Akun HRD {$user->name} berhasil diperbarui.");
     }
 
@@ -82,6 +95,8 @@ class HrdController extends Controller
 
         $nama = $user->name;
         $user->delete();
+
+        $this->catatLog("Menghapus akun HRD: {$nama}");
 
         return back()->with('success', "Akun HRD {$nama} berhasil dihapus.");
     }
