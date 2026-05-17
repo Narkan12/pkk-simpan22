@@ -28,7 +28,7 @@ img, video, iframe, embed, object {
 .cards-grid-2 {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%; 
 }
 
@@ -152,13 +152,12 @@ img, video, iframe, embed, object {
 
     /* ── Hamburger button ── */
     #sidebarToggleBtn {
+        display: none !important;
+    }
+    #headerToggleBtn {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        position: fixed !important;
-        top: 10px !important;
-        left: 10px !important;
-        z-index: 200 !important;
         width: 36px;
         height: 36px;
         background: var(--green-dark, #1B5E20) !important;
@@ -167,20 +166,31 @@ img, video, iframe, embed, object {
         cursor: pointer !important;
         color: #fff !important;
         font-size: 1.1rem !important;
-        line-height: 1 !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
-        /* FIX: pastikan tombol tidak geser layout */
         flex-shrink: 0;
     }
 
     /* ── Header ── */
     .top-header {
         left: 0 !important;
-        right: 0 !important; /* FIX: kunci kanan agar tidak overflow */
-        width: 100% !important; /* FIX: jangan biarkan header lebih lebar dari viewport */
-        padding: 0 0.75rem 0 54px !important;
+        right: 0 !important;
+        width: 100% !important;
+        padding: 0 0.75rem !important;
         height: 52px;
-        overflow: hidden; /* FIX */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+        min-width: 0;
+    }
+    #headerToggleBtn {
+        flex-shrink: 0;
+        order: -1;
     }
     .header-breadcrumb-title {
         font-size: 13px;
@@ -212,7 +222,6 @@ img, video, iframe, embed, object {
     }
 
     /* ── Tables ── */
-    /* FIX: table scroll terbatas di dalam wrapper-nya saja, bukan seluruh halaman */
     .table-dark-custom {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -220,13 +229,21 @@ img, video, iframe, embed, object {
         max-width: 100%;
     }
     .table-dark-custom table {
-        min-width: 600px;
+        min-width: 100%;
+        width: 100%;
     }
     .table-dark-custom thead th,
     .table-dark-custom tbody td {
         padding: 0.625rem 0.75rem;
         font-size: 12px;
-        white-space: nowrap; /* FIX: konten tabel tidak wrap, cukup scroll horizontal lokal */
+        white-space: nowrap;
+    }
+    /* datatable pagination & info full width */
+    .datatable-footer,
+    .datatable-info,
+    [class*="datatable"] {
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     /* ── Tombol tambah ── */

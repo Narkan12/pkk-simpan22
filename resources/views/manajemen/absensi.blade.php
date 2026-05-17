@@ -5,8 +5,7 @@
 @section('content')
 
     {{-- Header --}}
-    link
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;margin-bottom:1rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2rem;margin-bottom:1rem;">
         <div>
             <h4 style="color:#fff;font-weight:700;font-size:1.5rem;margin-bottom:0.25rem;">Kelola Absensi</h4>
             <p class="custom-paragraph" style="font-size:0.875rem;margin:0;">Monitoring dan verifikasi kehadiran pegawai</p>
@@ -18,7 +17,7 @@
     @endif
 
     {{-- Card Info --}}
-    <div class="cards-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1rem;">
+    <div class="cards-grid-4" style="margin-bottom:1rem;">
         <div class="custom-card rounded-xl p-4" style="display:flex;align-items:center;gap:1rem;">
             <div style="width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <i class="bi bi-check-circle" style="color:#4ade80;font-size:1.25rem;"></i>
