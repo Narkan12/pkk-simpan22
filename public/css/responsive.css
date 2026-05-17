@@ -28,7 +28,7 @@ img, video, iframe, embed, object {
 .cards-grid-2 {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     width: 100%; 
 }
 
@@ -155,18 +155,19 @@ img, video, iframe, embed, object {
         display: none !important;
     }
     #headerToggleBtn {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        padding: 0;
         display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
         background: var(--green-dark, #1B5E20) !important;
         border: none !important;
         border-radius: 8px !important;
-        cursor: pointer !important;
         color: #fff !important;
         font-size: 1.1rem !important;
-        flex-shrink: 0;
+        cursor: pointer;
     }
 
     /* ── Header ── */
@@ -187,10 +188,6 @@ img, video, iframe, embed, object {
         gap: 0.5rem;
         flex: 1;
         min-width: 0;
-    }
-    #headerToggleBtn {
-        flex-shrink: 0;
-        order: -1;
     }
     .header-breadcrumb-title {
         font-size: 13px;
@@ -229,8 +226,7 @@ img, video, iframe, embed, object {
         max-width: 100%;
     }
     .table-dark-custom table {
-        min-width: 100%;
-        width: 100%;
+        min-width: 600px;
     }
     .table-dark-custom thead th,
     .table-dark-custom tbody td {
@@ -238,12 +234,16 @@ img, video, iframe, embed, object {
         font-size: 12px;
         white-space: nowrap;
     }
-    /* datatable pagination & info full width */
     .datatable-footer,
     .datatable-info,
     [class*="datatable"] {
         width: 100% !important;
         max-width: 100% !important;
+    }
+
+    /* ── Kartu absensi: 2 kolom di mobile ── */
+    .cards-grid-absensi {
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 
     /* ── Tombol tambah ── */

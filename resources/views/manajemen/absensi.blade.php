@@ -17,7 +17,7 @@
     @endif
 
     {{-- Card Info --}}
-    <div class="cards-grid-4" style="margin-bottom:1rem;">
+    <div class="cards-grid-4 cards-grid-absensi" style="margin-bottom:1rem;">
         <div class="custom-card rounded-xl p-4" style="display:flex;align-items:center;gap:1rem;">
             <div style="width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <i class="bi bi-check-circle" style="color:#4ade80;font-size:1.25rem;"></i>
