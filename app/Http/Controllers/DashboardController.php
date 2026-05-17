@@ -95,11 +95,12 @@ class DashboardController extends Controller
         $cutiTerpakai = Cuti::where('id_pegawai', $pegawai->id)
             ->where('status', 'disetujui')
             ->whereYear('tanggal_mulai', $tahunIni)
+            ->whereNotIn('jenis_cuti', ['Cuti Sakit', 'Cuti Melahirkan'])
             ->get()
             ->sum(fn($c) => $c->tanggal_mulai->diffInDays($c->tanggal_selesai) + 1);
 
-        $jatahCuti  = 12;
-        $sisaCuti   = max(0, $jatahCuti - $cutiTerpakai);
+        $jatahCuti = 12;
+        $sisaCuti  = max(0, $jatahCuti - $cutiTerpakai);
 
         return view('dashboard-pegawai', compact(
             'pegawai', 'hariKerja', 'totalHariKerja', 'absensiTerbaru', 'riwayatCuti', 'sisaCuti'
