@@ -67,6 +67,7 @@ class DashboardController extends Controller
                 'totalHariKerja' => 0,
                 'absensiTerbaru' => collect([]),
                 'riwayatCuti'    => collect([]),
+                'sisaCuti'       => 0,
             ]);
         }
 
@@ -91,8 +92,17 @@ class DashboardController extends Controller
             ->take(1)
             ->get();
 
+        $cutiTerpakai = Cuti::where('id_pegawai', $pegawai->id)
+            ->where('status', 'disetujui')
+            ->whereYear('tanggal_mulai', $tahunIni)
+            ->get()
+            ->sum(fn($c) => $c->tanggal_mulai->diffInDays($c->tanggal_selesai) + 1);
+
+        $jatahCuti  = 12;
+        $sisaCuti   = max(0, $jatahCuti - $cutiTerpakai);
+
         return view('dashboard-pegawai', compact(
-            'pegawai', 'hariKerja', 'totalHariKerja', 'absensiTerbaru', 'riwayatCuti'
+            'pegawai', 'hariKerja', 'totalHariKerja', 'absensiTerbaru', 'riwayatCuti', 'sisaCuti'
         ));
     }
 

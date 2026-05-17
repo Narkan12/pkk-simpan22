@@ -43,7 +43,7 @@
         </div>
         <div class="summary-card">
             <p class="summary-card-label">Sisa Cuti</p>
-            <p class="summary-card-value">{{ $pegawai->jatah_cuti ?? 0 }} hari</p>
+            <p class="summary-card-value">{{ $sisaCuti ?? 0 }} hari</p>
         </div>
         <div class="summary-card">
             <p class="summary-card-label">Status Kerja</p>
