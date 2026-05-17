@@ -3,7 +3,7 @@
 
     {{-- Kiri: Toggle + Judul --}}
     <div class="header-left">
-        <button id="headerToggleBtn" onclick="toggleSidebar()" class="header-toggle-btn">
+        <button id="headerToggleBtn" onclick="if(window.innerWidth < 768){ openMobileSidebar(); } else { toggleSidebar(); }" class="header-toggle-btn">
             <i class="bi bi-list"></i>
         </button>
         <div class="header-breadcrumb">
@@ -21,11 +21,3 @@
     </div>
 
 </header>
-
-<style>
-@media (max-width: 767px) {
-    #headerToggleBtn {
-        display: none !important;
-    }
-}
-</style>
